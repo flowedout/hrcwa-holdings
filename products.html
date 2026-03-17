@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products — HRCWA Holdings LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #0dbfbf;
+      --teal2: #19e5e5;
+      --cobalt: #0047ab;
+      --dark: #0f1117;
+      --charcoal: #141718;
+      --off-white: #f0f4f4;
+      --muted: #7a8a8a;
+      --silver: #b8c8c8;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--charcoal);
+      color: var(--off-white);
+      overflow-x: hidden;
+    }
+
+    nav, main, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: #0f1117;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 64px;
+    }
+    .nav-brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; }
+    .nav-brand-name {
+      font-family: var(--font-display);
+      font-size: 2rem; letter-spacing: 0.05em;
+      color: #ffffff; line-height: 1;
+    }
+    .nav-brand-name .h-letter { color: #0047ab; }
+    .nav-brand-sub {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #888; font-weight: 400; align-self: center;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: #ccc; text-decoration: none;
+      font-size: 0.9rem; font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--teal); }
+
+    /* MAIN */
+    main { padding: 120px 4rem 6rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.05em; line-height: 1;
+      margin-bottom: 1rem; color: var(--off-white);
+    }
+    .section-sub {
+      color: rgba(176,200,200,0.68);
+      font-size: 1rem; line-height: 1.75;
+      max-width: 520px; margin-bottom: 4rem;
+    }
+
+    /* PRODUCT GRID */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: rgba(28,32,34,0.9);
+      border: 1px solid rgba(13,191,191,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover {
+      border-color: rgba(13,191,191,0.4);
+      transform: translateY(-4px);
+    }
+    .product-card-header {
+      background: linear-gradient(135deg, #0a1628 0%, #0d2240 100%);
+      padding: 2.5rem 2rem;
+      display: flex; align-items: center; gap: 1.25rem;
+      border-bottom: 1px solid rgba(13,191,191,0.1);
+    }
+    .product-icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border: 1px solid rgba(13,191,191,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; flex-shrink: 0;
+    }
+    .product-icon-img {
+      width: 72px; height: 72px; border-radius: 16px;
+      flex-shrink: 0; object-fit: cover;
+    }
+    .product-rating {
+      display: flex; align-items: center; gap: 0.5rem; margin-top: 0.4rem;
+    }
+    .stars { color: #f5a623; font-size: 0.85rem; letter-spacing: 1px; }
+    .rating-text { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
+    .product-header-text {}
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 2rem; letter-spacing: 0.05em;
+      color: var(--off-white); line-height: 1; margin-bottom: 0.35rem;
+    }
+    .product-platform {
+      display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;
+    }
+    .platform-badge {
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      background: rgba(13,191,191,0.12);
+      color: var(--teal);
+      padding: 0.2rem 0.6rem; border-radius: 20px;
+      border: 1px solid rgba(13,191,191,0.2);
+    }
+    .product-card-body {
+      padding: 1.75rem 2rem;
+      flex: 1; display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .product-desc {
+      font-size: 0.9rem; line-height: 1.75;
+      color: rgba(176,200,200,0.72);
+      flex: 1;
+    }
+    .product-features {
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .product-feature {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.85rem; color: rgba(176,200,200,0.65);
+    }
+    .product-feature::before {
+      content: ''; display: block;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+    .product-card-footer {
+      padding: 1.25rem 2rem;
+      border-top: 1px solid rgba(13,191,191,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    .product-meta {
+      font-size: 0.75rem; color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .product-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal); color: var(--dark);
+      padding: 0.65rem 1.5rem;
+      font-family: var(--font-body); font-weight: 500;
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    .product-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(13,191,191,0.3);
+    }
+    .product-cta svg { width: 14px; height: 14px; }
+
+    /* FOOTER */
+    footer {
+      background: #0f1117;
+      padding: 1.75rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(13,191,191,0.12);
+    }
+    .footer-brand { display: flex; align-items: baseline; gap: 0.5rem; }
+    .footer-brand-name { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.05em; color: #fff; }
+    .footer-brand-name .h-letter { color: #0047ab; }
+    .footer-brand-sub { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: #555; }
+    .footer-legal { font-size: 0.75rem; color: #555; }
+    .footer-state { font-size: 0.75rem; color: #555; }
+
+    /* FADE IN */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      main { padding: 100px 2rem 4rem; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+    }
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html">
+    <span class="nav-brand-name"><span class="h-letter">H</span>RCWA</span>
+    <span class="nav-brand-sub">Holdings LLC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="section-label fade-up">What We've Built</div>
+  <div class="section-title fade-up">Our Products</div>
+  <p class="section-sub fade-up">Software built by HRCWA Holdings — available now on the App Store.</p>
+
+  <div class="products-grid">
+
+    <!-- SCENTCAST -->
+    <div class="product-card fade-up">
+      <div class="product-card-header">
+        <img src="scentcast-logo.png" alt="ScentCast" class="product-icon-img"/>
+        <div class="product-header-text">
+          <div class="product-name">ScentCast</div>
+          <div class="product-platform">
+            <span class="platform-badge">iPhone</span>
+            <span class="platform-badge">iPad</span>
+            <span class="platform-badge">Mac</span>
+          </div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-text">5.0 · Lifestyle · Free</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card-body">
+        <p class="product-desc">Ever wonder what fragrance to wear? What matches the weather or season? Let ScentCast use your location, weather, season and time of day to pick the perfect fragrance for the occasion. For an enhanced experience, create a login and build your own collection. ScentCast can also send you daily emails with recommendations.</p>
+        <div class="product-features">
+          <div class="product-feature">Location, weather, season & time-of-day powered recommendations</div>
+          <div class="product-feature">Mood buttons to help determine your perfect fragrance</div>
+          <div class="product-feature">Age range selector to factor personal taste over time</div>
+          <div class="product-feature">Build and manage your personal fragrance collection</div>
+          <div class="product-feature">Daily email recommendations delivered to your inbox</div>
+        </div>
+      </div>
+      <div class="product-card-footer">
+        <span class="product-meta">Free · v1.2 · 13.9 MB · Ages 4+</span>
+        <a class="product-cta" href="https://apps.apple.com/us/app/scentcast/id6759512957" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download on App Store
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="footer-brand-name"><span class="h-letter">H</span>RCWA</span>
+    <span class="footer-brand-sub">Holdings LLC</span>
+  </div>
+  <div class="footer-legal">© 2025 HRCWA Holdings LLC. All rights reserved.</div>
+  <div class="footer-state">Oklahoma, USA</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — HRCWA Holdings LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #0dbfbf;
+      --teal2: #19e5e5;
+      --cobalt: #0047ab;
+      --dark: #0f1117;
+      --charcoal: #141718;
+      --off-white: #f0f4f4;
+      --muted: #7a8a8a;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--charcoal);
+      color: var(--off-white);
+      overflow-x: hidden;
+    }
+
+    nav, main, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: #0f1117;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 64px;
+    }
+    .nav-brand { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; }
+    .nav-brand-name {
+      font-family: var(--font-display);
+      font-size: 2rem; letter-spacing: 0.05em;
+      color: #ffffff; line-height: 1;
+    }
+    .nav-brand-name .h-letter { color: #0047ab; }
+    .nav-brand-sub {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #888; font-weight: 400; align-self: center;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: #ccc; text-decoration: none;
+      font-size: 0.9rem; font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--teal); }
+
+    /* MAIN */
+    main { padding: 120px 4rem 6rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.75rem; text-align: center;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.05em; line-height: 1;
+      margin-bottom: 1rem; color: var(--off-white); text-align: center;
+    }
+    .section-sub {
+      color: rgba(176,200,200,0.68);
+      font-size: 1rem; line-height: 1.75;
+      max-width: 520px; margin: 0 auto 4rem; text-align: center;
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    }
+    .service-card {
+      background: rgba(28,32,34,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      text-align: center;
+    }
+    .service-card:hover { border-color: rgba(13,191,191,0.35); transform: translateY(-3px); }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: var(--teal);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 2.5rem; margin-bottom: 1.25rem; display: block; }
+    .service-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem; letter-spacing: 0.1em;
+      margin-bottom: 1rem; color: var(--off-white);
+    }
+    .service-desc {
+      font-size: 0.9rem; line-height: 1.75;
+      color: rgba(176,200,200,0.65);
+      max-width: 360px; margin: 0 auto 1.5rem;
+    }
+    .service-features {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      text-align: left; margin-top: 1.5rem;
+      border-top: 1px solid rgba(13,191,191,0.1);
+      padding-top: 1.5rem;
+    }
+    .service-feature {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.85rem; color: rgba(176,200,200,0.6);
+    }
+    .service-feature::before {
+      content: ''; display: block;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0; margin-top: 0.42rem;
+    }
+    .service-cta {
+      display: inline-block; margin-top: 1.75rem;
+      background: transparent; color: var(--teal);
+      border: 1px solid rgba(13,191,191,0.4);
+      padding: 0.65rem 1.75rem;
+      font-family: var(--font-body); font-weight: 500;
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .service-cta:hover {
+      background: var(--teal); color: var(--dark);
+      border-color: var(--teal);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0f1117;
+      padding: 1.75rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(13,191,191,0.12);
+    }
+    .footer-brand { display: flex; align-items: baseline; gap: 0.5rem; }
+    .footer-brand-name { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.05em; color: #fff; }
+    .footer-brand-name .h-letter { color: #0047ab; }
+    .footer-brand-sub { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: #555; }
+    .footer-legal { font-size: 0.75rem; color: #555; }
+    .footer-state { font-size: 0.75rem; color: #555; }
+
+    /* FADE IN */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      main { padding: 100px 2rem 4rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+    }
+    @media (max-width: 560px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html">
+    <span class="nav-brand-name"><span class="h-letter">H</span>RCWA</span>
+    <span class="nav-brand-sub">Holdings LLC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="section-label fade-up">What We Do</div>
+  <div class="section-title fade-up">Our Services</div>
+  <p class="section-sub fade-up">Enterprise-level expertise delivered for businesses of every size — from strategy through deployment.</p>
+
+  <div class="services-grid">
+
+    <!-- IT CONSULTING -->
+    <div class="service-card fade-up">
+      <span class="service-icon">🖥️</span>
+      <div class="service-name">IT Consulting</div>
+      <p class="service-desc">Strategic technology guidance, infrastructure planning, network architecture, and IT advisory — aligning technology with business outcomes.</p>
+      <div class="service-features">
+        <div class="service-feature">Infrastructure planning & network architecture</div>
+        <div class="service-feature">Technology roadmap development</div>
+        <div class="service-feature">IT management advisory & staffing guidance</div>
+        <div class="service-feature">Security assessments & compliance reviews</div>
+        <div class="service-feature">Vendor evaluation & procurement strategy</div>
+      </div>
+      <a href="contact.html" class="service-cta">Get a Consultation</a>
+    </div>
+
+    <!-- SOFTWARE DEVELOPMENT -->
+    <div class="service-card fade-up">
+      <span class="service-icon">⚡</span>
+      <div class="service-name">Software Development</div>
+      <p class="service-desc">Custom mobile apps, web platforms, and backend systems. Full-stack expertise with scalable, maintainable solutions built to last.</p>
+      <div class="service-features">
+        <div class="service-feature">iOS & Android mobile app development</div>
+        <div class="service-feature">Web application & API development</div>
+        <div class="service-feature">SaaS platform architecture & deployment</div>
+        <div class="service-feature">Database design & backend systems</div>
+        <div class="service-feature">Ongoing maintenance & support</div>
+      </div>
+      <a href="contact.html" class="service-cta">Start a Project</a>
+    </div>
+
+    <!-- RESELLING -->
+    <div class="service-card fade-up">
+      <span class="service-icon">📦</span>
+      <div class="service-name">Reselling</div>
+      <p class="service-desc">Hardware, software, and technology procurement. Leveraging vendor relationships to source the right equipment at competitive pricing.</p>
+      <div class="service-features">
+        <div class="service-feature">Hardware sourcing & procurement</div>
+        <div class="service-feature">Software licensing & subscriptions</div>
+        <div class="service-feature">Competitive pricing through vendor relationships</div>
+        <div class="service-feature">Equipment configuration & deployment</div>
+        <div class="service-feature">Lifecycle management & refresh planning</div>
+      </div>
+      <a href="contact.html" class="service-cta">Request a Quote</a>
+    </div>
+
+    <!-- HOME AUTOMATION -->
+    <div class="service-card fade-up">
+      <span class="service-icon">🏠</span>
+      <div class="service-name">Home Automation</div>
+      <p class="service-desc">Smart home design, installation, and full ecosystem integration — making your home work smarter with reliable, modern platforms.</p>
+      <div class="service-features">
+        <div class="service-feature">Smart home system design & planning</div>
+        <div class="service-feature">Device installation & configuration</div>
+        <div class="service-feature">Lighting, security & climate automation</div>
+        <div class="service-feature">Home Assistant & platform integration</div>
+        <div class="service-feature">Ongoing support & system expansion</div>
+      </div>
+      <a href="contact.html" class="service-cta">Learn More</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="footer-brand-name"><span class="h-letter">H</span>RCWA</span>
+    <span class="footer-brand-sub">Holdings LLC</span>
+  </div>
+  <div class="footer-legal">© 2025 HRCWA Holdings LLC. All rights reserved.</div>
+  <div class="footer-state">Oklahoma, USA</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
